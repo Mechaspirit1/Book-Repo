@@ -1,6 +1,7 @@
 const input = document.querySelector("#input");
 const btn = document.querySelector("#btn")
 const list = document.querySelector("#list");
+const select = document.querySelector("#select");
 
 btn.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -16,8 +17,18 @@ btn.addEventListener("click", (e)=>{
             
             console.log(bookList);
 
-            //manda livros mais antigos para o topo da pagina e mais novos pra baixo
-            bookList.sort((a, b) => (a.first_publish_year || 9999) - (b.first_publish_year || 9999));
+            if(select.value === "new"){
+                //manda livros mais antigos para o topo da pagina e mais novos pra baixo
+                bookList.sort((a, b) => (b.first_publish_year || 0) - (a.first_publish_year || 0));
+            }
+            else if(select.value === "old"){
+                //manda livros mais antigos para o fundo da pagina e mais novos para o topo
+                bookList.sort((a, b) => (a.first_publish_year || 9999) - (b.first_publish_year || 9999));
+            }
+            else{
+                alert("Option not selected");
+                return false;
+            }
 
             for(let i=0; i<bookList.length; i++){
                 const title = bookList[i].title;
