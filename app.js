@@ -31,16 +31,23 @@ btn.addEventListener("click", (e)=>{
                 const book = document.createElement("h2");
                 const bookSub = document.createElement("p")
 
+                book.className = "cssTitle";
+
                 const bookTitle = document.createTextNode(title);
                 const bookAuth = document.createTextNode(author);
                 const bookPub = document.createTextNode(pubYear);
+                const unknown = document.createTextNode("Unknown Author/Publisher");
                 const space = document.createTextNode(" --- ");
                 
                 book.appendChild(bookTitle);
+                if(bookAuth.textContent != "undefined"){
+                    bookSub.appendChild(bookAuth);
+                }
+                else{
+                    bookSub.appendChild(unknown);
+                }
 
-                bookSub.appendChild(bookAuth);
-
-                if(bookPub.textContent != "undefined"){
+                if(bookPub.textContent != "undefined" && bookPub.textContent != 0){
                     bookSub.appendChild(space);
                     bookSub.appendChild(bookPub);
                 }
@@ -52,6 +59,17 @@ btn.addEventListener("click", (e)=>{
         }
         catch(err){
             console.log(err);
+
+            const error = document.createElement("h2");
+            const subErr = document.createElement("p");
+            const errorTxt = document.createTextNode("Error !")
+            const subErrTxt = document.createTextNode("The item you were searching for doesn't exist, please try again !");
+
+            error.appendChild(errorTxt)
+            subErr.appendChild(subErrTxt);
+
+            list.appendChild(error);
+            list.appendChild(subErr);
         }
     }
     getBook();

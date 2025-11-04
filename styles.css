@@ -41,3 +41,20 @@ button:hover{
     background-color: rgba(240, 248, 255, 0);
     color: rgb(0, 102, 255);
 }
+
+#list{
+    margin-right: 30%;
+    margin-left: 30%;
+}
+
+.cssTitle{
+    font-weight: 400;
+    font-style: italic;
+}
+
+@media (max-width: 450px) {
+    #list{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
