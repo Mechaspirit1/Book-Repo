@@ -14,7 +14,6 @@ btn.addEventListener("click", (e)=>{
             const res = await fetch(`https://openlibrary.org/search.json?q=${input.value}`); //usa o input do usuario para fazer buscas na API
             const parsed = await res.json();
             let bookList = parsed.docs; //docs é a informação disponibilizada pela API que é relevante ao usuario 
-            
             console.log(bookList);
 
             if(select.value === "new"){
@@ -33,11 +32,23 @@ btn.addEventListener("click", (e)=>{
             for(let i=0; i<bookList.length; i++){
                 const title = bookList[i].title;
                 const author = bookList[i].author_name;
-                const pubYear = bookList[i].first_publish_year
+                const pubYear = bookList[i].first_publish_year;
+                let cover = bookList[i].cover_i;
 
                 console.log(title);
                 console.log(author);
-                console.log(pubYear)
+                console.log(pubYear);
+
+                console.log(cover);
+                
+                //cria um elemento img e coloca sua puxa a API de capas da Open Library com base no objeto cover_i do livro
+                let img = document.createElement("img");
+                if(cover){
+                    img.src = `https://covers.openlibrary.org/b/ID/${cover}-M.jpg`;
+                }
+                else{
+                    img.innerHTML = "";
+                }
 
                 const book = document.createElement("h2");
                 const bookSub = document.createElement("p")
@@ -63,6 +74,7 @@ btn.addEventListener("click", (e)=>{
                     bookSub.appendChild(bookPub);
                 }
 
+                list.appendChild(img);
                 list.appendChild(book);
                 list.appendChild(bookSub)
 
