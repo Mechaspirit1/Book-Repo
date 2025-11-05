@@ -47,7 +47,7 @@ btn.addEventListener("click", (e)=>{
                     img.src = `https://covers.openlibrary.org/b/ID/${cover}-M.jpg`;
                 }
                 else{
-                    img.innerHTML = "";
+                    img.src = "missing.jpg";
                 }
 
                 const book = document.createElement("h2");
