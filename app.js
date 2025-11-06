@@ -33,11 +33,13 @@ btn.addEventListener("click", (e)=>{
                 const title = bookList[i].title;
                 const author = bookList[i].author_name;
                 const pubYear = bookList[i].first_publish_year;
+                const works = bookList[i].key;
                 let cover = bookList[i].cover_i;
 
                 console.log(title);
                 console.log(author);
                 console.log(pubYear);
+                console.log(works);
 
                 console.log(cover);
                 
@@ -50,6 +52,10 @@ btn.addEventListener("click", (e)=>{
                     img.src = "missing.jpg";
                 }
 
+                const link = document.createElement("a")
+                link.href = `https://openlibrary.org/${works}`;
+                link.target = "_blank";
+
                 const book = document.createElement("h2");
                 const bookSub = document.createElement("p")
 
@@ -61,7 +67,9 @@ btn.addEventListener("click", (e)=>{
                 const unknown = document.createTextNode("Unknown Author/Publisher");
                 const space = document.createTextNode(" --- ");
                 
-                book.appendChild(bookTitle);
+                link.appendChild(bookTitle);
+                book.appendChild(link);
+
                 if(bookAuth.textContent != "undefined"){
                     bookSub.appendChild(bookAuth);
                 }
@@ -77,7 +85,6 @@ btn.addEventListener("click", (e)=>{
                 list.appendChild(img);
                 list.appendChild(book);
                 list.appendChild(bookSub)
-
             }
         }
         catch(err){

@@ -12,6 +12,11 @@ img{
     border: 1px solid;
     display: block;
     margin: auto;
+    transition: 0.1s;
+}
+
+img:hover{
+    transform: scale(1.1);
 }
 
 h2{
@@ -66,6 +71,14 @@ select{
 select:hover{
     background-color: rgba(240, 248, 255, 0);
     color: rgb(0, 102, 255);
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 102, 255);
+}
+a:hover{
+    color: rgb(0, 183, 255);
 }
 #list{
     margin-top: 3%;
